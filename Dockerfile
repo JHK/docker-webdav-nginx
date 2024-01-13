@@ -1,6 +1,8 @@
 FROM debian:12-slim
 
 ARG BUILD_DATE
+ARG UID=1000
+ARG GID=1000
 
 LABEL \
   maintainer="Logan Marchione <logan@loganmarchione.com>" \
@@ -21,6 +23,8 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     chown -R www-data:www-data "/var/www" && \
     rm /etc/nginx/sites-enabled/default
 
+RUN usermod -u $UID -o www-data && groupmod -g $GID -o www-data
+
 EXPOSE 80
 
 VOLUME [ "/var/www/webdav" ]
@@ -35,4 +39,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]
 
-HEALTHCHECK CMD nc -z localhost 80 || exit 1 
+HEALTHCHECK CMD nc -z localhost 80 || exit 1
