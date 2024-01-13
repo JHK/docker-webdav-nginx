@@ -35,6 +35,8 @@ Runs a Nginx WebDav server in Docker
 |----------------------------|--------------------|----------------------------------------------------------------------------------------------------------------|----------------------------|--------------------------------------------------------------|
 | WEBDAV_USER                | No                 | WebDav username                                                                                                | user                       | user AND pass need to be set for authentication to work      |
 | WEBDAV_PASS                | No                 | WebDav password                                                                                                | password1                  | user AND pass need to be set for authentication to work      |
+| UID                        | No                 | User ID                                                                                                        | 1000                       | owner (user) of the uploaded files                           |
+| GID                        | No                 | Group ID                                                                                                       | 1000                       | owner (group) of the uploaded files                          |
 | NGINX_CLIENT_MAX_BODY_SIZE | No (default: 250M) | Nginx's [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)  | 500M                       | Be sure to include the units. Set to `0` to disable.         |
 
 ### Ports
